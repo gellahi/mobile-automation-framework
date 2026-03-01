@@ -27,10 +27,12 @@ public class LoginPage {
     }
 
     public void enterUsername(String username) {
+        driver.findElement(usernameField).clear();
         driver.findElement(usernameField).sendKeys(username);
     }
 
     public void enterPassword(String password) {
+        driver.findElement(passwordField).clear();
         driver.findElement(passwordField).sendKeys(password);
     }
 
@@ -39,7 +41,7 @@ public class LoginPage {
     }
 
     public String getErrorMessage() {
-        return driver.findElement(errorMessage).getText();
+        return driver.findElement(errorMessage).getAttribute("content-desc");
     }
 
     public void login(String username, String password) {
