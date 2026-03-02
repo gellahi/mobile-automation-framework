@@ -4,6 +4,7 @@
         <classes>
             <class name="com.mobile.automation.tests.LaunchTest"/>
             <class name="com.mobile.automation.tests.LoginTest"/>
+            <class name="com.mobile.automation.tests.ProductCartTest"/>
         </classes>
     </test>
 </suite>
