@@ -38,6 +38,9 @@ logs/
 hs_err_pid*
 replay_pid*
 
+# --- Debug / Inspection artifacts ---
+.debug/
+
 # --- OS Specific ---
 .DS_Store
 Thumbs.db
