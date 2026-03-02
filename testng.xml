@@ -1,0 +1,11 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Mobile Automation Suite">
+    <test name="Authentication Tests">
+        <classes>
+            <class name="com.mobile.automation.tests.LaunchTest"/>
+            <class name="com.mobile.automation.tests.LoginTest"/>
+            <class name="com.mobile.automation.tests.ProductCartTest"/>
+            <class name="com.mobile.automation.tests.CheckoutTest"/>
+        </classes>
+    </test>
+</suite>
