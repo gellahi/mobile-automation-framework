@@ -2,6 +2,10 @@ package com.mobile.automation.pages;
 
 import io.appium.java_client.android.AndroidDriver;
 import org.openqa.selenium.By;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.time.Duration;
 
 public class LoginPage {
 
@@ -49,5 +53,13 @@ public class LoginPage {
         enterUsername(username);
         enterPassword(password);
         clickLogin();
+    }
+
+    public void loginAndVerify(String username, String password) {
+        login(username, password);
+        // Wait for products screen to fully load after valid login
+        new WebDriverWait(driver, Duration.ofSeconds(15))
+                .until(ExpectedConditions.presenceOfElementLocated(
+                        By.xpath("//*[@content-desc='products screen']")));
     }
 }

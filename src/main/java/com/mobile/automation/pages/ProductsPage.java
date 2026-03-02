@@ -2,6 +2,10 @@ package com.mobile.automation.pages;
 
 import io.appium.java_client.android.AndroidDriver;
 import org.openqa.selenium.By;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.time.Duration;
 
 public class ProductsPage {
 
@@ -13,7 +17,8 @@ public class ProductsPage {
 
     // Locators
     private final By productsScreen = By.xpath("//android.view.ViewGroup[@content-desc='products screen']");
-    private final By firstAddToCartButton = By.xpath("(//android.view.ViewGroup[@content-desc='Add To Cart button'])[1]");
+    private final By firstProduct = By.xpath("(//android.view.ViewGroup[@content-desc='store item'])[1]");
+    private final By addToCartButton = By.xpath("//android.view.ViewGroup[@content-desc='Add To Cart button']");
     private final By cartIcon = By.xpath("//android.view.ViewGroup[@content-desc='cart badge']");
     private final By sortButton = By.xpath("//android.view.ViewGroup[@content-desc='sort button']");
 
@@ -24,11 +29,21 @@ public class ProductsPage {
     }
 
     public void addFirstProductToCart() {
-        driver.findElement(firstAddToCartButton).click();
+        driver.findElement(firstProduct).click();
+        new WebDriverWait(driver, Duration.ofSeconds(10))
+                .until(ExpectedConditions.elementToBeClickable(addToCartButton)).click();
+        driver.navigate().back();
+        new WebDriverWait(driver, Duration.ofSeconds(10))
+                .until(ExpectedConditions.presenceOfElementLocated(productsScreen));
     }
 
     public void openCart() {
-        driver.findElement(cartIcon).click();
+        new WebDriverWait(driver, Duration.ofSeconds(10))
+                .until(ExpectedConditions.elementToBeClickable(cartIcon)).click();
+        // Wait until cart screen loads
+        new WebDriverWait(driver, Duration.ofSeconds(10))
+                .until(ExpectedConditions.presenceOfElementLocated(
+                        By.xpath("//*[@content-desc='cart screen']")));
     }
 
     public void openSortOptions() {
