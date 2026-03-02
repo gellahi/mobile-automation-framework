@@ -24,14 +24,17 @@ public class BaseTest {
 
         options.setPlatformName("Android");
         options.setAutomationName("UiAutomator2");
-        options.setDeviceName("Android Device");
-        options.setUdid("bqor7p75pnprw8jz");
+        options.setDeviceName("Android Emulator");
+
+        String udid = System.getProperty("udid");
+        if (udid != null) {
+            options.setUdid(udid);
+        }
+
+        options.setApp(System.getProperty("user.dir") + "/app/sauce-demo.apk");
         options.setAutoGrantPermissions(true);
         options.setAppPackage("com.saucelabs.mydemoapp.rn");
         options.setAppActivity("com.saucelabs.mydemoapp.rn.MainActivity");
-        options.setNoReset(true);
-        options.setCapability("appium:skipDeviceInitialization", true);
-        options.setCapability("appium:ignoreHiddenApiPolicyError", true);
 
         driver = new AndroidDriver(
                 new URL("http://127.0.0.1:4723"),
